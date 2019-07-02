@@ -22,10 +22,10 @@ table_ref = dataset_ref.table("comments")
 # API request - fetch the table
 table = client.get_table(table_ref)
 
-# Print information on all the columns in the "full" table in the "hacker_news" dataset
+# Print information on all the columns in the "comments" table in the "hacker_news" dataset
 table.schema
 
-# Print information on all the columns in the "full" table in the "hacker_news" dataset
+# Print information on all the columns in the "comments" table in the "hacker_news" dataset
 client.list_rows(table, max_results = 5).to_dataframe()
 
 
@@ -36,10 +36,10 @@ query = """
         GROUP BY parent
         HAVING COUNT(id) > 10
         """
-        
-# Set up the query (cancel the query if it would use too much of 
+
+# Set up the query (cancel the query if it would use too much of
 # your quota, with the limit set to 1 GB)
-safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**9)
 query_job = client.query(query, job_config=safe_config)
 
 # API request - run the query, and convert the results to a pandas DataFrame
@@ -59,10 +59,10 @@ query = """
         GROUP BY parent
         HAVING COUNT(1) > 10
         """
-        
-# Set up the query (cancel the query if it would use too much of 
+
+# Set up the query (cancel the query if it would use too much of
 # your quota, with the limit set to 1 GB)
-safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**9)
 query_job = client.query(query, job_config=safe_config)
 
 # API request - run the query, and convert the results to a pandas DataFrame

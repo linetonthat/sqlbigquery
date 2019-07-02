@@ -20,7 +20,7 @@ tables = list(client.list_tables(dataset))
 # print list of tables
 for table in tables:
     print(table.table_id)
-    
+
 # construct a reference to the "full" table
 table_ref = dataset_ref.table("full")
 
@@ -37,23 +37,23 @@ client.list_rows(table, max_results = 5).to_dataframe()
 ### SELECT FROM
 ### --------------------------------------------------------------------------
 
-# Construct a reference to the "hacker_news" dataset
+# Construct a reference to the "openaq" dataset
 dataset_ref = client.dataset("openaq", project="bigquery-public-data")
 # https://openaq.org/#/?_k=esd1sb
 
 # API request - fetch the dataset
 dataset = client.get_dataset(dataset_ref)
 
-# construct a reference to the "full" table
+# construct a reference to the "global_air_quality" table
 table_ref = dataset_ref.table("global_air_quality")
 
 # API request - fetch the table
 table = client.get_table(table_ref)
 
-# Print information on all the columns in the "full" table in the "hacker_news" dataset
+# Print information on all the columns in the "global_air_quality" table in the "openaq" dataset
 table.schema
 
-# Print information on all the columns in the "full" table in the "hacker_news" dataset
+# Print information on all the columns in the "global_air_quality" table in the "openaq" dataset
 client.list_rows(table, max_results = 5).to_dataframe()
 
 
@@ -63,5 +63,3 @@ query = """
         FROM `bigquery-public-data.openaq.global_air_quality`
         WHERE country = 'US'
         """
-        
-        
